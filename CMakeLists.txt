@@ -28,6 +28,7 @@ set (sg_h_dir "${CMAKE_CURRENT_LIST_DIR}/program/space/geometrics/headers")
 set (m_s_dir "${CMAKE_CURRENT_LIST_DIR}/program/sources")
 set (sf_s_dir "${CMAKE_CURRENT_LIST_DIR}/program/space/functions/sources")
 set (sg_s_dir "${CMAKE_CURRENT_LIST_DIR}/program/space/geometrics/sources")
+set (ma_dir "${CMAKE_CURRENT_LIST_DIR}/program/space/math")
 
 set (conf_dir "${CMAKE_CURRENT_LIST_DIR}/program/config")
 
@@ -51,7 +52,7 @@ set (LOG_DIR "${CMAKE_CURRENT_BINARY_DIR}/log")
 configure_file(${conf_dir}/config.h.in ${conf_dir}/config.h)
 
 
-include_directories (${m_h_dir} ${sf_h_dir} ${sg_h_dir} ${conf_dir} program/space program/ ${Boost_INCLUDE_DIR})
+include_directories (${m_h_dir} ${sf_h_dir} ${sg_h_dir} ${conf_dir} ${ma_dir} program/space program/ ${Boost_INCLUDE_DIR})
 
 set (HEADERS
 	${m_h_dir}/csv_parser.h
@@ -70,6 +71,8 @@ set (HEADERS
 	${sg_h_dir}/xy_circle.h
 	${sg_h_dir}/sphere.h
 	${conf_dir}/config.h
+	${ma_dir}/runge_kuta.h
+	${ma_dir}/ode_solver.h
 	)
 
 set (SOURCES

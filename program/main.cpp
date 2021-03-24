@@ -12,11 +12,22 @@
 #include "sphere.h"
 #include "log.h"
 
+
+#include "runge_kuta.h"
+
 #include <boost/program_options.hpp>
 
 
 int main(int argc, char** argv)	
 {	
+	ArgsContainer<double, double> c(0,0);
+	RungeKutta4<double, double, double> __a( [](double a, double b){return a;}, c);
+	double step = 0.01;
+	__a.set_step(step);
+	for (int i = 0; i < 100; i++) {
+		std::cout << (step * i) << " - " << __a.step() << std::endl;
+	}
+
 	namespace po = boost::program_options;
 
 	double h = 1;
