@@ -35,6 +35,9 @@ namespace earth {
 
 	double course(Point p, Vector vec);
 	Vector course_to_vec(Point p, double course);
+
+
+	double Fg(double h);
 }
 
 

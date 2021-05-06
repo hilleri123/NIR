@@ -25,9 +25,13 @@ int main(int argc, char** argv)
 	double step = 0.01;
 	__a.set_step(step);
 	for (int i = 0; i < 100; i++) {
-		std::cout << (step * i) << " - " << __a.step() << std::endl;
+		std::cout << (step * i) << ", " << __a.step() << std::endl;
 	}
 
+
+
+
+#if 0
 	namespace po = boost::program_options;
 
 	double h = 1;
@@ -152,6 +156,7 @@ int main(int argc, char** argv)
 		stream.close();
 	}
 	delete &data;
+#endif
 	return 0;
 };
 

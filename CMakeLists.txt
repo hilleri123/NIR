@@ -63,6 +63,7 @@ set (HEADERS
 	${sf_h_dir}/part_of_function.h
 	${sf_h_dir}/rotate.h
 	${sf_h_dir}/velocity.h
+	${sf_h_dir}/roket.h
 	${sg_h_dir}/metrics.h
 	${sg_h_dir}/trans_matrix.h
 	${sg_h_dir}/point.h
@@ -83,6 +84,7 @@ set (SOURCES
 	${sf_s_dir}/part_of_function.cpp
 	${sf_s_dir}/rotate.cpp
 	${sf_s_dir}/velocity.cpp
+	${sf_s_dir}/roket.cpp
 	${sg_s_dir}/metrics.cpp
 	${sg_s_dir}/trans_matrix.cpp
 	${sg_s_dir}/point.cpp
