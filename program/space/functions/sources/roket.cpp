@@ -45,11 +45,12 @@ double Roket::m(double t) const
 {
 	double tmp_t = t;
 	double sum_m = 0;
-	for (auto i = _stages.begin(); i != _stages.end(); ++i, tmp_t -= i->T_max()) {
+	for (auto i = _stages.begin(); i < _stages.end(); ++i) {
 		if (tmp_t < 0)
 			sum_m += i->m(0);
 		else if (tmp_t < i->T_max()) 
 			sum_m += i->m(tmp_t);
+		tmp_t -= i->T_max();
 	}
 	return sum_m;
 }
@@ -59,9 +60,11 @@ double Roket::m(double t) const
 double Roket::G(double t) const
 {
 	double tmp_t = t;
-	for (auto i = _stages.begin(); i != _stages.end(); ++i, tmp_t -= i->T_max())
+	for (auto i = _stages.begin(); i != _stages.end(); ++i) {
 		if (tmp_t < i->T_max())
 			return i->G(tmp_t);
+		tmp_t -= i->T_max();
+	}
 	return 0;
 }
 

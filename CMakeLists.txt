@@ -51,6 +51,8 @@ set (LOG_DIR "${CMAKE_CURRENT_BINARY_DIR}/log")
 
 configure_file(${conf_dir}/config.h.in ${conf_dir}/config.h)
 
+#set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE RelWithDebInfo)
 
 include_directories (${m_h_dir} ${sf_h_dir} ${sg_h_dir} ${conf_dir} ${ma_dir} program/space program/ ${Boost_INCLUDE_DIR})
 

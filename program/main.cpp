@@ -25,7 +25,9 @@ int main(int argc, char** argv)
 	Roket r(std::vector<Stage>({s0}));
 	RoketArgs args(r, earth::geo(0,0,0), 0, [](double){return 0.;}, [](double){return 0.1;});
 	ArgsContainer<RoketArgs, double> c(args,0);
-	RungeKutta4<double, RoketArgs, double> __a( roket_ode, c);
+	std::cout << "Runge" << std::endl;
+	//RungeKutta4<double, RoketArgs, double> __a( &roket_ode, c);
+	RungeKutta4<double, RoketArgs, double> __a( [](RoketArgs args, double v) {return roket_ode(args, v);}, c);
 	double step = 0.01;
 	__a.set_step(step);
 	for (int i = 0; i < 100; i++) {

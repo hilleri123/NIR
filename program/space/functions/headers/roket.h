@@ -11,6 +11,11 @@ class Stage
 public:
 	explicit Stage(double uG, double G, double M, double m_t);
 
+	Stage(const Stage& ) = default;
+	Stage(Stage&& ) = default;
+	Stage& operator=(const Stage& ) = default;
+	Stage& operator=(Stage&& ) = default;
+
 	virtual double T_max() const;
 
 	virtual double m(double t) const;
@@ -31,6 +36,11 @@ class Roket
 {
 public:
 	explicit Roket(const std::vector<Stage>& stages);
+
+	Roket(const Roket& ) = default;
+	Roket(Roket&& ) = default;
+	Roket& operator=(const Roket& ) = default;
+	Roket& operator=(Roket&& ) = default;
 
 	double T_max() const;
 
