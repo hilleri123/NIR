@@ -31,6 +31,12 @@ class Roket
 {
 public:
 	explicit Roket(const std::vector<Stage>& stages);
+
+	double T_max() const;
+
+	double m(double t) const;
+
+	double G(double t) const;
 protected:
 	std::vector<Stage> _stages;
 };

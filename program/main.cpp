@@ -12,6 +12,7 @@
 #include "sphere.h"
 #include "log.h"
 
+#include "roket_ode.h"
 
 #include "runge_kuta.h"
 
@@ -20,8 +21,11 @@
 
 int main(int argc, char** argv)	
 {	
-	ArgsContainer<double, double> c(0,0);
-	RungeKutta4<double, double, double> __a( [](double a, double b){return a;}, c);
+	Stage s0(250, 4000, 10000,9000);
+	Roket r(std::vector<Stage>({s0}));
+	RoketArgs args(r, earth::geo(0,0,0), 0, [](double){return 0.;}, [](double){return 0.1;});
+	ArgsContainer<RoketArgs, double> c(args,0);
+	RungeKutta4<double, RoketArgs, double> __a( roket_ode, c);
 	double step = 0.01;
 	__a.set_step(step);
 	for (int i = 0; i < 100; i++) {

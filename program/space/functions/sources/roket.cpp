@@ -32,3 +32,40 @@ Roket::Roket(const std::vector<Stage>& stages)
 	: _stages(stages)
 {}
 
+double Roket::T_max() const
+{
+	double res = 0;
+	for (auto i = _stages.begin(); i != _stages.end(); ++i)
+		res += i->T_max();
+	return res;
+}
+
+
+double Roket::m(double t) const
+{
+	double tmp_t = t;
+	double sum_m = 0;
+	for (auto i = _stages.begin(); i != _stages.end(); ++i, tmp_t -= i->T_max()) {
+		if (tmp_t < 0)
+			sum_m += i->m(0);
+		else if (tmp_t < i->T_max()) 
+			sum_m += i->m(tmp_t);
+	}
+	return sum_m;
+}
+
+
+
+double Roket::G(double t) const
+{
+	double tmp_t = t;
+	for (auto i = _stages.begin(); i != _stages.end(); ++i, tmp_t -= i->T_max())
+		if (tmp_t < i->T_max())
+			return i->G(tmp_t);
+	return 0;
+}
+
+
+
+
+

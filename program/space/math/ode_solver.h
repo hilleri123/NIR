@@ -41,7 +41,7 @@ public:
 
 	void reset() { _current = _initial; }
 
-	void set_step(ARG0 step) { _step = step; }
+	void set_step(/*ARG0*/double step) { _step = step; }
 
 	virtual RES step()
 	{
@@ -57,6 +57,7 @@ protected:
 	//ArgsContainer<ARG0, ARG1> _current;
 	Args _initial;
 	Args _current;
-	ARG0 _step;
+	//ARG0 _step;
+	double _step;
 };
 

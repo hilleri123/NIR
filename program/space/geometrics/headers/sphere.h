@@ -38,6 +38,8 @@ namespace earth {
 
 
 	double Fg(double h);
+
+	double k(double h);
 }
 
 
