@@ -21,18 +21,23 @@
 
 int main(int argc, char** argv)	
 {	
-	Stage s0(250, 4000, 10000,9000);
-	Roket r(std::vector<Stage>({s0}));
-	RoketArgs args(r, earth::geo(0,0,0), 0, [](double){return 0.;}, [](double){return 0.1;});
+	Stage s0(250, 4000000, 170000,170000);
+	Stage s1(270, 800000, 100000,100000);
+	Stage s2(320, 290000, 9500+25000,25000);
+	Roket r(std::vector<Stage>({s0, s1, s2}));
+	RoketArgs args(r, earth::geo(0,0,0), 0, [](double t){if (t < 340) return 0.; else if (t*0.08 > atan(1)*2) return atan(1)*2; else return t*0.08; }, [](double){return 0.1;});
 	ArgsContainer<RoketArgs, double> c(args,0);
 	std::cout << "Runge" << std::endl;
 	//RungeKutta4<double, RoketArgs, double> __a( &roket_ode, c);
 	RungeKutta4<double, RoketArgs, double> __a( [](RoketArgs args, double v) {return roket_ode(args, v);}, c);
-	double step = 0.01;
+	double step = 10;
 	__a.set_step(step);
-	for (int i = 0; i < 100; i++) {
-		std::cout << (step * i) << ", " << __a.step() << std::endl;
+	for (int i = 0; i < r.T_max() / step; i++) {
+		std::cout << __a.current() << std::endl;
+		__a.step();
+		//std::cout << (step * i) << ", " << __a.step() << std::endl;
 	}
+	std::cout << s0.T_max() << " " << s1.T_max() << " " << s2.T_max() << " " << r.T_max() << std::endl;
 
 
 

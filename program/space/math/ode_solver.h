@@ -2,6 +2,7 @@
 #pragma once
 
 #include <functional>
+#include <iostream>
 
 // y' = f(x, y)
 // y' - RES, x - ARG0, y - ARG1
@@ -24,6 +25,11 @@ public:
 
 	ARG0& x() { return _x; } 
 	ARG1& y() { return _y; } 
+
+	friend std::ostream& operator<<(std::ostream& stream, const ArgsContainer& container)
+	{
+		return stream << container._x << std::endl << container._y << std::endl;
+	}
 protected:
 	ARG0 _x;
 	ARG1 _y;
@@ -46,6 +52,11 @@ public:
 	virtual RES step()
 	{
 		return RES();
+	}
+
+	virtual const Args& current() const
+	{
+		return _current;
 	}
 
 	virtual ~OdeSolver() {}

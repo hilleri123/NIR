@@ -25,6 +25,10 @@ public:
 		RES k2 = OdeS::_f_ptr(_cur.x()+(_st/2.), _cur.y()+(_st/2.*k1));
 		RES k3 = OdeS::_f_ptr(_cur.x()+(_st/2.), _cur.y()+(_st/2.*k2));
 		RES k4 = OdeS::_f_ptr(_cur.x()+(_st), _cur.y()+(_st*k3));
+		//!!!!
+		//
+		_cur.x().v = _cur.y();
+		_cur.x().dt = _st;
 		_cur.x() += _st;
 		_cur.y() += _st/6.*(k1+2.*k2+2.*k3+k4);
 		return _cur.y();

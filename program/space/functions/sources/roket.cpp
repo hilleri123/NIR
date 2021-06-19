@@ -8,6 +8,8 @@ Stage::Stage(double uG, double G, double M, double m_t)
 
 double Stage::T_max() const
 {
+	//std::cout << "T_max()" << std::endl;
+	//std::cout << _m_t << " " << _uG << " " << earth::Fg(0) << " " << _G << std::endl;
 	return _m_t * _uG * earth::Fg(0) / _G;
 }
 
