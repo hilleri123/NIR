@@ -16,6 +16,8 @@ double Stage::T_max() const
 
 double Stage::m(double t) const
 {
+	if (t > T_max())
+		return _M - _m_t;
 	return (_M - _m_t) + (_m_t - t * _G / _uG / earth::Fg(0));
 }
 
@@ -23,6 +25,8 @@ double Stage::m(double t) const
 
 double Stage::G(double t) const
 {
+	if (t > T_max())
+		return 0;
 	return _G;
 }
 
@@ -50,7 +54,7 @@ double Roket::m(double t) const
 	for (auto i = _stages.begin(); i < _stages.end(); ++i) {
 		if (tmp_t < 0)
 			sum_m += i->m(0);
-		else if (tmp_t < i->T_max()) 
+		else if (tmp_t < i->T_max() || i+1 == _stages.end()) 
 			sum_m += i->m(tmp_t);
 		tmp_t -= i->T_max();
 	}
